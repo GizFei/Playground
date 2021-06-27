@@ -13,13 +13,11 @@ class ViewsMainActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
-        view.setOnClickListener {
-            try {
-                val clz = Class.forName(it.tag as? String ?: "com.giz.android.MainActivity")
-                startActivity(Intent(this, clz))
-            } catch (e: Exception) {
-                Toast.makeText(this, "跳转错误", Toast.LENGTH_SHORT).show()
-            }
+        try {
+            val clz = Class.forName(view.tag as? String ?: "com.giz.android.MainActivity")
+            startActivity(Intent(this, clz))
+        } catch (e: Exception) {
+            Toast.makeText(this, "跳转错误", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -14,6 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- 无工具栏主题 -->
+    <style name="NoActionBar" parent="Theme.Playground">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="MainActivityActionButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

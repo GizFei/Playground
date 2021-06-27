@@ -15,13 +15,13 @@
 
         <Button
             style="@style/MainActivityActionButton"
-            android:text="DecorViewHeightActivity"
-            android:tag="com.giz.android.playground.view.DecorViewHeightActivity"  />
+            android:text="DialogFragmentActivity"
+            android:tag="com.giz.android.views.dialogfragment.DialogFragmentActivity"  />
 
         <Button
             style="@style/MainActivityActionButton"
-            android:text="TestFragmentLifecycleObserverActivity"
-            android:tag="com.giz.android.playground.fragment.TestFragmentLifecycleObserverActivity"  />
+            android:text="LightSettingsActivity"
+            android:tag="com.giz.android.views.tab.LightSettingsActivity"  />
 
     </LinearLayout>
 
