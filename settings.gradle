@@ -1,3 +1,5 @@
+include ':bottomsheet'
+include ':common'
 include ':views'
 include ':app'
 rootProject.name = "Playground"

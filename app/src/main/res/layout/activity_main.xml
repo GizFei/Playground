@@ -13,13 +13,15 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <include layout="@layout/common_toolbar" />
+
         <Button
-            style="@style/MainActivityActionButton"
+            style="@style/YFButton.ActionButton"
             android:text="DecorViewHeightActivity"
             android:tag="com.giz.android.playground.view.DecorViewHeightActivity"  />
 
         <Button
-            style="@style/MainActivityActionButton"
+            style="@style/YFButton.ActionButton"
             android:text="TestFragmentLifecycleObserverActivity"
             android:tag="com.giz.android.playground.fragment.TestFragmentLifecycleObserverActivity"  />
 
