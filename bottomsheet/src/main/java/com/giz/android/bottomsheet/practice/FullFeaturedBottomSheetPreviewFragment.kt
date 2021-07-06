@@ -3,9 +3,9 @@ package com.giz.android.bottomsheet.practice
 import android.annotation.SuppressLint
 import android.os.Bundle
 import com.giz.android.bottomsheet.R
+import com.giz.android.bottomsheet.databinding.LayoutFullFeaturedBottomSheetWrapContentBinding
 import com.giz.android.bottomsheet.fragment.BaseBottomSheetFragment
 import com.giz.android.bottomsheet.util.BottomSheetOptions
-import com.giz.android.common.databinding.LayoutFullFeaturedBottomSheetShortBinding
 import com.giz.android.common.util.logBottomSheet
 
 /**
@@ -14,7 +14,7 @@ import com.giz.android.common.util.logBottomSheet
  * Created by GizFei on 2021/7/5
  */
 class FullFeaturedBottomSheetPreviewFragment :
-    BaseBottomSheetFragment<LayoutFullFeaturedBottomSheetShortBinding>() {
+    BaseBottomSheetFragment<LayoutFullFeaturedBottomSheetWrapContentBinding>() {
 
     companion object {
         const val TAG = "FullFeaturedBottomSheetPreviewDialog"
@@ -36,7 +36,7 @@ class FullFeaturedBottomSheetPreviewFragment :
         logBottomSheet { "extractOptions: $mOptions" }
     }
 
-    override fun getLayoutId(): Int = R.layout.layout_full_featured_bottom_sheet_short
+    override fun getLayoutId(): Int = R.layout.layout_full_featured_bottom_sheet_wrap_content
 
     @SuppressLint("SetTextI18n")
     override fun initView() {

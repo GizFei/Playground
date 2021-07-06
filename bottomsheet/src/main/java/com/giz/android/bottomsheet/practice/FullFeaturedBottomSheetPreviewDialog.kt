@@ -1,24 +1,16 @@
 package com.giz.android.bottomsheet.practice
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import com.giz.android.bottomsheet.R
+import com.giz.android.bottomsheet.databinding.LayoutFullFeaturedBottomSheetBinding
 import com.giz.android.bottomsheet.dialog.BaseBottomSheetDialog
-import com.giz.android.bottomsheet.util.BottomSheetFeature
-import com.giz.android.bottomsheet.util.BottomSheetFeatureImpl
 import com.giz.android.bottomsheet.util.BottomSheetOptions
-import com.giz.android.common.databinding.LayoutFullFeaturedBottomSheetBinding
 import com.giz.android.common.util.logBottomSheet
 import com.giz.android.common.util.logLifecycle
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**
  * 包含全部特性的BottomSheetDialog
