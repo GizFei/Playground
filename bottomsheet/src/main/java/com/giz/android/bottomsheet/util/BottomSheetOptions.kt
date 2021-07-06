@@ -4,7 +4,9 @@ import android.os.Bundle
 import java.io.Serializable
 
 /**
- * BottomSheet配置项
+ * BottomSheet配置项。
+ * - 作`Dialog`时，配置项全部有效
+ * - 作`Fragment`时，配置项部分生效
  *
  * Created by GizFei on 2021/7/2
  */

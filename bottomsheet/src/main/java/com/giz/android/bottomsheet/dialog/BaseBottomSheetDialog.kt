@@ -4,12 +4,12 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.giz.android.bottomsheet.BottomSheet
 import com.giz.android.bottomsheet.R
 import com.giz.android.bottomsheet.util.BottomSheetOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -17,13 +17,21 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**
- * Description of the file
+ * 只能充当`Dialog`使用
+ * ```
+ * val bottomSheetDialog = BottomSheetDialog.newInstance()
+ * bottomSheetDialog.show(supportFragmentManager, "TAG")
+ * ```
  *
  * Created by GizFei on 2021/7/4
  */
-abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFragment() {
+abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> :
+    BottomSheetDialogFragment(),
+    BottomSheet {
 
     protected lateinit var mBinding: VDB
+    protected lateinit var mBehavior: BottomSheetBehavior<FrameLayout>
+    protected var mWrapperView: FrameLayout? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), getLayoutId(), null, false)
@@ -31,9 +39,12 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFr
 
         return BottomSheetDialog(requireContext(), theme).apply {
             setContentView(mBinding.root)
+            mBehavior = behavior
+            mWrapperView = findBottomSheetWrapperView(this)
+
             customizeByOptions(this, getOptions())
             customizeDialog(this)
-            customizeWrapperView(findBottomSheetWrapperView(this))
+            customizeWrapperView(mWrapperView)
             customBehavior(behavior)
         }
     }
@@ -42,7 +53,7 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFr
         options ?: return
 
         isCancelable = options.cancelable
-        dialog.behavior.apply {
+        dialog.behavior.run {
             isHideable = options.hideable
             skipCollapsed = options.skipCollapsed
         }
@@ -59,7 +70,7 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFr
         val topSpacedHeight = screenHeight - spacedPx
 
         findBottomSheetWrapperView(dialog)?.layoutParams?.height = topSpacedHeight
-        dialog.behavior.apply {
+        dialog.behavior.run {
             peekHeight = topSpacedHeight
             isHideable = false
         }
@@ -67,7 +78,7 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFr
 
     private fun matchFullscreen(dialog: BottomSheetDialog) {
         findBottomSheetWrapperView(dialog)?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
-        dialog.behavior.apply {
+        dialog.behavior.run {
             skipCollapsed = true
             state = BottomSheetBehavior.STATE_EXPANDED
         }
@@ -85,9 +96,13 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFr
         }
     }
 
-    protected fun findBottomSheetWrapperView(dialog: BottomSheetDialog): View? {
+    protected fun findBottomSheetWrapperView(dialog: BottomSheetDialog): FrameLayout? {
         return dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet)
     }
+
+    override fun getBehavior(): BottomSheetBehavior<FrameLayout>? = mBehavior
+
+    override fun getWrapperView(): FrameLayout? = mWrapperView
 
     protected val Int.dp: Int get() =
         TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), resources.displayMetrics).toInt()
@@ -99,7 +114,7 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> : BottomSheetDialogFr
 
     open fun customizeDialog(dialog: BottomSheetDialog) {}
 
-    open fun customizeWrapperView(wrapperView: View?) {}
+    open fun customizeWrapperView(wrapperView: FrameLayout?) {}
 
     open fun customBehavior(behavior: BottomSheetBehavior<FrameLayout>) {}
 
