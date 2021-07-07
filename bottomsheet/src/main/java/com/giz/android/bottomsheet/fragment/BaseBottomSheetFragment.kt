@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding
 import com.giz.android.bottomsheet.BottomSheet
 import com.giz.android.bottomsheet.R
 import com.giz.android.bottomsheet.util.BottomSheetOptions
-import com.giz.android.common.util.logBottomSheet
+import com.giz.android.bottomsheet.util.logBottomSheet
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

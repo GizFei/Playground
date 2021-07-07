@@ -2,7 +2,6 @@ package com.giz.android.common.util
 
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import com.orhanobut.logger.PrettyFormatStrategy
 
 /**
  * 封装第三方日志打印库
