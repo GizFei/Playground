@@ -2,10 +2,12 @@ package com.giz.android.bottomsheet.fragment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -57,8 +59,15 @@ abstract class BaseBottomSheetFragment<VDB: ViewDataBinding> :
      * - 作`Fragment`使用，为空
      */
     protected var mBehavior: BottomSheetBehavior<FrameLayout>? = null
-
     protected var mWrapperView: FrameLayout? = null
+
+    private var mOptions: BottomSheetOptions? = null
+
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mOptions = BottomSheetOptions.resolveBundle(arguments)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         logBottomSheet { "onCreateDialog" }
@@ -197,6 +206,9 @@ abstract class BaseBottomSheetFragment<VDB: ViewDataBinding> :
 
     override fun getWrapperView(): FrameLayout? = mWrapperView
 
+    protected val Int.dp: Int get() =
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), resources.displayMetrics).toInt()
+
     @LayoutRes
     abstract fun getLayoutId(): Int
 
@@ -206,6 +218,15 @@ abstract class BaseBottomSheetFragment<VDB: ViewDataBinding> :
 
     open fun customBehavior(behavior: BottomSheetBehavior<FrameLayout>) {}
 
-    open fun getOptions(): BottomSheetOptions? = null
+    open fun getOptions(): BottomSheetOptions? = mOptions
+
+    companion object {
+        fun <T : BaseBottomSheetFragment<*>> T.withOptions(options: BottomSheetOptions): T {
+            this.arguments = (arguments ?: Bundle()).apply {
+                putAll(options.toBundle())
+            }
+            return this
+        }
+    }
 
 }

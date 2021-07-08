@@ -36,7 +36,7 @@ class LightSettingsPagerAdapter: PagerAdapter() {
 
     override fun getCount(): Int = 2
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return if (position == 0) {
             "Color Light"
         } else {

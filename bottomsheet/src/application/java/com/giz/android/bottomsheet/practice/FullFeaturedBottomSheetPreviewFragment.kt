@@ -1,7 +1,11 @@
 package com.giz.android.bottomsheet.practice
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.FrameLayout
+import androidx.core.view.updatePadding
 import com.giz.android.bottomsheet.R
 import com.giz.android.bottomsheet.databinding.LayoutFullFeaturedBottomSheetWrapContentBinding
 import com.giz.android.bottomsheet.fragment.BaseBottomSheetFragment
@@ -45,5 +49,14 @@ class FullFeaturedBottomSheetPreviewFragment :
     }
 
     override fun getOptions(): BottomSheetOptions = mOptions
+
+    override fun customizeWrapperView(wrapperView: FrameLayout?) {
+        wrapperView?.run {
+            // 如果内容布局的背景不是白色，那么可以给包裹视图添加上边距，防止圆角被盖住
+            updatePadding(top = 16.dp)
+            // 保持圆角，修改包裹视图的背景颜色：
+            backgroundTintList = ColorStateList.valueOf(Color.CYAN)
+        }
+    }
 
 }

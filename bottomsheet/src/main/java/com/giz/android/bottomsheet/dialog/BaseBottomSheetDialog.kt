@@ -6,6 +6,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -32,6 +33,14 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> :
     protected lateinit var mBinding: VDB
     protected lateinit var mBehavior: BottomSheetBehavior<FrameLayout>
     protected var mWrapperView: FrameLayout? = null
+
+    private var mOptions: BottomSheetOptions? = null
+
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mOptions = BottomSheetOptions.resolveBundle(arguments)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         mBinding = DataBindingUtil.inflate(LayoutInflater.from(requireContext()), getLayoutId(), null, false)
@@ -118,6 +127,15 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> :
 
     open fun customBehavior(behavior: BottomSheetBehavior<FrameLayout>) {}
 
-    open fun getOptions(): BottomSheetOptions? = null
+    open fun getOptions(): BottomSheetOptions? = mOptions
+
+    companion object {
+        fun <T : BaseBottomSheetDialog<*>> T.withOptions(options: BottomSheetOptions): T {
+            this.arguments = (arguments ?: Bundle()).apply {
+                putAll(options.toBundle())
+            }
+            return this
+        }
+    }
 
 }

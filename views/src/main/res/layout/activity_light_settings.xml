@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".tab.LightSettingsActivity">
 
         <Button
+            style="@style/YFButton.ActionButton"
             android:id="@+id/btn_show_sheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ShowBottomSheetFragment"
             android:textAllCaps="false"
+            tools:ignore="HardcodedText"
+            />
+
+        <Button
+            style="@style/YFButton.ActionButton"
+            android:id="@+id/btn_show_sheet2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowBottomSheetFragment222"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText"
+            />
+
+        <Button
+            style="@style/YFButton.ActionButton"
+            android:id="@+id/btn_show_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowBottomSheetDialog"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText"
             />
 
         <FrameLayout
