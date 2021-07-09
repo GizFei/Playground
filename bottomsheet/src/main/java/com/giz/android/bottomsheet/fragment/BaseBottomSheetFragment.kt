@@ -22,7 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 /**
  * 既可以充当`Dialog`、也可以充当`Fragment`的`BottomSheet`。
  *
- * ##重点笔记：
+ * ## 重点笔记：
  * ### 1、以显示`Dialog`的方式使用
  * ```
  * val bottomSheetFragment = BottomSheetFragment.newInstance()
