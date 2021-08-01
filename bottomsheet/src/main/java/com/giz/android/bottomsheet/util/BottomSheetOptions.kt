@@ -19,7 +19,10 @@ class BottomSheetOptions: Serializable {
         private set
 
     /**
-     * 是否使用顶部圆角
+     * 是否使用顶部圆角。
+     * BottomSheet的背景默认是白色。如果发现没有圆角，请检查内容布局文件：
+     * · 是否设置了背景（如白色）。
+     * · 是否添加了顶部内边距（为圆角腾出空间）。
      */
     var topRoundCorner: Boolean = true
         private set

@@ -6,12 +6,13 @@ plugins {
     id 'org.jetbrains.dokka'
 }
 
+def compileAsApplication = false
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        if (COMPILE_AS_APPLICATION == true) {
+        if (compileAsApplication) {
             applicationId "com.giz.android.bottomsheet"
         }
         minSdkVersion 23
@@ -30,16 +31,15 @@ android {
     }
 
     flavorDimensions "mode"
-
     productFlavors {
         library {
             dimension "mode"
-            COMPILE_AS_APPLICATION = false
+            compileAsApplication = false
         }
 
         application {
             dimension "mode"
-            COMPILE_AS_APPLICATION = true
+            compileAsApplication = true
         }
     }
 
@@ -86,7 +86,7 @@ dependencies {
 
 //    compileOnly "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
 
-    if (COMPILE_AS_APPLICATION == true) {
+    if (compileAsApplication) {
         implementation project(path: ":common")
     }
 

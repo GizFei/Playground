@@ -88,7 +88,6 @@ abstract class BaseBottomSheetDialog<VDB: ViewDataBinding> :
     private fun matchFullscreen(dialog: BottomSheetDialog) {
         findBottomSheetWrapperView(dialog)?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
         dialog.behavior.run {
-            skipCollapsed = true
             state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
